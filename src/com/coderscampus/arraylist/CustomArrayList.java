@@ -6,18 +6,18 @@ public class CustomArrayList<T> implements CustomList<T> {
 
 	@Override
 	public boolean add(T item) {
-		if (size < items.length) {
-			increaseSize();
-			items[size]= item;
-			System.out.println("item added" + size);
-			size++; 
+		if (size == items.length) {
+			items = increaseArraySize();
 		}
+//		items[size] = item;
+		System.out.println("item added" + size);
+		size++;
 		return true;
 	}
 
-	private Object[] increaseSize() {
-	Object[] newArray = new Object[size*2];	
-		for(int i = 0; i < size; i++) {
+	private Object[] increaseArraySize() {
+		Object[] newArray = new Object[size * 2];
+		for (int i = 0; i < size; i++) {
 			newArray[i] = items[i];
 		}
 		return newArray;
@@ -28,10 +28,11 @@ public class CustomArrayList<T> implements CustomList<T> {
 		return size;
 	}
 
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public T get(int index) {
 		return (T) items[index];
 	}
-	
+
 }
